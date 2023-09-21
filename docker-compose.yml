@@ -2,19 +2,21 @@ version: '3.1'
 
 services:
 
+  # WordPress Service
   wordpress:
     image: wordpress
     restart: always
     ports:
-      - 8080:80
+      - 8080:80  # Map host port 8080 to container port 80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
       WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
     volumes:
-      - ./wordpress:/var/www/html
+      - ./wordpress:/var/www/html  # Mount host directory to container directory
 
+  # MySQL Database Service
   db:
     image: mysql:5.7
     restart: always
@@ -22,22 +24,24 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_RANDOM_ROOT_PASSWORD: 1  # Generate a random root password
     volumes:
-      - ./db:/var/lib/mysql
+      - ./db:/var/lib/mysql  # Mount host directory to container directory
 
+  # phpMyAdmin Service
   pma:
     image: phpmyadmin
     ports:
-      - "8000:80"
+      - "8000:80"  # Map host port 8000 to container port 80
     environment:
       PMADB_USER: ${PMADB_USER}
       PMADB_PASS: ${PMADB_PASS}
       PMA_USER: ${PMA_USER}
       PMA_PASSWORD: ${PMA_PASSWORD}
     links:
-      - db:db
+      - db:db  # Link to the 'db' service
 
+# Define Docker volumes
 volumes:
   wordpress:
   db:
