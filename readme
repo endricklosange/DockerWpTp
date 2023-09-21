@@ -1,0 +1,49 @@
+# Projet WordPress en Docker - Guide d'utilisation
+
+Bienvenue dans votre projet WordPress en Docker ! Ce guide vous aidera à configurer et à exécuter votre site WordPress localement à l'aide de Docker.
+
+## Étapes de configuration
+
+1. Créez un fichier `.env` en vous basant sur la structure du fichier `.env.sample` fourni. Assurez-vous que les variables suivantes ont la même valeur :
+
+   - `WORDPRESS_DB_USER`
+   - `MYSQL_USER`
+   - `PMADB_USER`
+   - `PMA_USER`
+
+   De même, assurez-vous que les variables suivantes ont la même valeur :
+
+   - `WORDPRESS_DB_PASSWORD`
+   - `MYSQL_PASSWORD`
+   - `PMADB_PASS`
+   - `PMA_PASSWORD`
+
+   Cela garantira que WordPress, la base de données MySQL et phpMyAdmin partagent les mêmes informations d'identification.
+
+## Lancement du conteneur
+
+2. Ouvrez un terminal et naviguez jusqu'au répertoire de votre projet contenant le fichier `docker-compose.yml`.
+
+3. Exécutez la commande suivante pour lancer les conteneurs Docker :
+   
+   ```bash
+   docker-compose up
+   ```
+
+   Cette commande démarrera les conteneurs WordPress, MySQL et phpMyAdmin en fonction de la configuration définie dans le fichier `docker-compose.yml`.
+
+4. Une fois que les conteneurs sont en cours d'exécution, vous pouvez accéder à votre site WordPress en ouvrant votre navigateur Web et en vous rendant à l'URL suivante :
+
+   [http://localhost:8080/](http://localhost:8080/)
+
+   Vous pouvez maintenant configurer WordPress selon vos besoins.
+
+## Accès à phpMyAdmin
+
+5. Pour accéder à phpMyAdmin et gérer votre base de données, ouvrez votre navigateur Web et rendez-vous à l'URL suivante :
+
+   [http://localhost:8000/](http://localhost:8000/)
+
+   Vous pourrez vous connecter à phpMyAdmin en utilisant les mêmes informations d'identification que vous avez définies dans le fichier `.env`.
+
+C'est tout ! Vous avez maintenant un environnement de développement WordPress fonctionnant localement grâce à Docker. N'hésitez pas à personnaliser votre site WordPress et à gérer votre base de données via phpMyAdmin pour créer le site de vos rêves.
